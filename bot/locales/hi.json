@@ -1,0 +1,94 @@
+{
+  "common": {
+    "success": "सफल",
+    "error": "त्रुटि",
+    "warning": "चेतावनी",
+    "info": "जानकारी",
+    "loading": "कृपया प्रतीक्षा करें...",
+    "no_permission": "आपको इस कमांड का उपयोग करने की अनुमति नहीं है।",
+    "owner_only": "यह कमांड केवल बॉट ओनर के लिए है।",
+    "guild_only": "यह कमांड केवल सर्वर के अंदर उपयोग की जा सकती है।",
+    "maintenance": "बॉट वर्तमान में मेंटेनेंस मोड में है। कृपया बाद में पुनः प्रयास करें।",
+    "invalid_user": "वह उपयोगकर्ता नहीं मिला।",
+    "invalid_channel": "वह चैनल नहीं मिला।",
+    "invalid_role": "वह रोल नहीं मिला।",
+    "missing_reason": "कृपया एक कारण प्रदान करें।",
+    "done": "हो गया।",
+    "cancelled": "कार्रवाई रद्द कर दी गई।",
+    "confirm": "क्या आप सुनिश्चित हैं?",
+    "yes": "हाँ",
+    "no": "नहीं"
+  },
+  "help": {
+    "title": "AEGIS ULTIMATE ESPORTS BOT — सहायता",
+    "description": "अधिक जानकारी के लिए `&help <command>` या `/help` का उपयोग करें।",
+    "categories": "श्रेणियाँ",
+    "no_command": "कमांड नहीं मिली।"
+  },
+  "moderation": {
+    "ban_success": "{user} को सफलतापूर्वक बैन कर दिया गया। कारण: {reason}",
+    "ban_fail": "{user} को बैन करने में विफल।",
+    "unban_success": "{user} का बैन सफलतापूर्वक हटा दिया गया।",
+    "kick_success": "{user} को सफलतापूर्वक किक कर दिया गया। कारण: {reason}",
+    "timeout_success": "{user} को {duration} के लिए टाइमआउट कर दिया गया। कारण: {reason}",
+    "timeout_remove": "{user} से टाइमआउट हटा दिया गया।",
+    "warn_success": "{user} को चेतावनी दी गई। कारण: {reason}",
+    "warn_history": "{user} का चेतावनी इतिहास",
+    "purge_success": "{count} संदेश हटा दिए गए।",
+    "case_created": "केस `{case_id}` बनाया गया।",
+    "no_hierarchy": "रोल पदानुक्रम के कारण आप इस उपयोगकर्ता को मॉडरेट नहीं कर सकते।",
+    "self_mod": "आप स्वयं को मॉडरेट नहीं कर सकते।",
+    "bot_hierarchy": "रोल पदानुक्रम के कारण मैं इस उपयोगकर्ता को मॉडरेट नहीं कर सकता।"
+  },
+  "security": {
+    "lockdown_enabled": "आपातकालीन लॉकडाउन सक्षम कर दिया गया है।",
+    "lockdown_disabled": "लॉकडाउन हटा दिया गया है।",
+    "alert": "सुरक्षा अलर्ट",
+    "anti_nuke_triggered": "एंटी-न्यूक सुरक्षा सक्रिय हो गई।",
+    "anti_raid_triggered": "संभावित रेड का पता चला।",
+    "config_updated": "सुरक्षा सेटिंग्स अपडेट की गईं।"
+  },
+  "tickets": {
+    "created": "टिकट बनाया गया: {channel}",
+    "closed": "टिकट बंद कर दिया गया।",
+    "claimed": "टिकट {user} द्वारा क्लेम किया गया।",
+    "unclaimed": "टिकट अनक्लेम किया गया।",
+    "transferred": "टिकट ट्रांसफर किया गया।",
+    "already_open": "आपका पहले से एक खुला टिकट है।",
+    "not_found": "टिकट नहीं मिला।",
+    "no_permission": "आपको इस टिकट तक पहुँच नहीं है।"
+  },
+  "esports": {
+    "tournament_created": "टूर्नामेंट `{name}` बना दिया गया है।",
+    "tournament_closed": "`{name}` के लिए रजिस्ट्रेशन अब बंद है।",
+    "team_registered": "टीम `{team}` सफलतापूर्वक रजिस्टर हो गई।",
+    "team_full": "यह टूर्नामेंट भर चुका है।",
+    "checkin_success": "चेक-इन सफल रहा।",
+    "match_scheduled": "मैच शेड्यूल कर दिया गया।",
+    "result_submitted": "परिणाम जमा कर दिया गया है और सत्यापन की प्रतीक्षा है।",
+    "dispute_opened": "विवाद खोल दिया गया है।",
+    "leaderboard_title": "लीडरबोर्ड"
+  },
+  "welcome": {
+    "default_message": "**{server}** में आपका स्वागत है {user}!",
+    "leave_message": "{user} ने सर्वर छोड़ दिया है।"
+  },
+  "verification": {
+    "success": "आपको वेरिफाई कर दिया गया है!",
+    "already_verified": "आप पहले से वेरिफाइड हैं।",
+    "failed": "वेरिफिकेशन विफल रहा। कृपया स्टाफ से संपर्क करें।"
+  },
+  "staff": {
+    "application_submitted": "आपका स्टाफ आवेदन जमा कर दिया गया है।",
+    "application_accepted": "आपका स्टाफ आवेदन स्वीकार कर लिया गया है।",
+    "application_rejected": "आपका स्टाफ आवेदन अस्वीकार कर दिया गया है।",
+    "duty_on": "अब आप ड्यूटी पर हैं।",
+    "duty_off": "अब आप ड्यूटी से ऑफ हैं।"
+  },
+  "utility": {
+    "ping": "पॉन्ग! लेटेंसी: {latency}ms",
+    "uptime": "अपटाइम: {uptime}",
+    "userinfo_title": "उपयोगकर्ता जानकारी",
+    "serverinfo_title": "सर्वर जानकारी"
+  }
+}
