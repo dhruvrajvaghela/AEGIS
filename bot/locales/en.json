@@ -1,0 +1,94 @@
+{
+  "common": {
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Information",
+    "loading": "Please wait...",
+    "no_permission": "You do not have permission to use this command.",
+    "owner_only": "This command is restricted to the bot owner.",
+    "guild_only": "This command can only be used inside a server.",
+    "maintenance": "The bot is currently in maintenance mode. Please try again later.",
+    "invalid_user": "Could not find that user.",
+    "invalid_channel": "Could not find that channel.",
+    "invalid_role": "Could not find that role.",
+    "missing_reason": "Please provide a reason.",
+    "done": "Done.",
+    "cancelled": "Action cancelled.",
+    "confirm": "Are you sure?",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "help": {
+    "title": "AEGIS ULTIMATE ESPORTS BOT — Help",
+    "description": "Use `&help <command>` or `/help` for more details.",
+    "categories": "Categories",
+    "no_command": "Command not found."
+  },
+  "moderation": {
+    "ban_success": "Successfully banned {user}. Reason: {reason}",
+    "ban_fail": "Failed to ban {user}.",
+    "unban_success": "Successfully unbanned {user}.",
+    "kick_success": "Successfully kicked {user}. Reason: {reason}",
+    "timeout_success": "Successfully timed out {user} for {duration}. Reason: {reason}",
+    "timeout_remove": "Removed timeout from {user}.",
+    "warn_success": "Warned {user}. Reason: {reason}",
+    "warn_history": "Warning history for {user}",
+    "purge_success": "Deleted {count} messages.",
+    "case_created": "Case `{case_id}` created.",
+    "no_hierarchy": "You cannot moderate this user due to role hierarchy.",
+    "self_mod": "You cannot moderate yourself.",
+    "bot_hierarchy": "I cannot moderate this user due to role hierarchy."
+  },
+  "security": {
+    "lockdown_enabled": "Emergency lockdown has been enabled.",
+    "lockdown_disabled": "Lockdown has been lifted.",
+    "alert": "Security Alert",
+    "anti_nuke_triggered": "Anti-nuke protection triggered.",
+    "anti_raid_triggered": "Possible raid detected.",
+    "config_updated": "Security settings updated."
+  },
+  "tickets": {
+    "created": "Ticket created: {channel}",
+    "closed": "Ticket closed.",
+    "claimed": "Ticket claimed by {user}.",
+    "unclaimed": "Ticket unclaimed.",
+    "transferred": "Ticket transferred.",
+    "already_open": "You already have an open ticket.",
+    "not_found": "Ticket not found.",
+    "no_permission": "You do not have access to this ticket."
+  },
+  "esports": {
+    "tournament_created": "Tournament `{name}` has been created.",
+    "tournament_closed": "Registration for `{name}` is now closed.",
+    "team_registered": "Team `{team}` registered successfully.",
+    "team_full": "This tournament is full.",
+    "checkin_success": "Check-in successful.",
+    "match_scheduled": "Match scheduled.",
+    "result_submitted": "Result submitted and awaiting verification.",
+    "dispute_opened": "Dispute has been opened.",
+    "leaderboard_title": "Leaderboard"
+  },
+  "welcome": {
+    "default_message": "Welcome {user} to **{server}**!",
+    "leave_message": "{user} has left the server."
+  },
+  "verification": {
+    "success": "You have been verified!",
+    "already_verified": "You are already verified.",
+    "failed": "Verification failed. Please contact staff."
+  },
+  "staff": {
+    "application_submitted": "Your staff application has been submitted.",
+    "application_accepted": "Your staff application has been accepted.",
+    "application_rejected": "Your staff application has been rejected.",
+    "duty_on": "You are now on duty.",
+    "duty_off": "You are now off duty."
+  },
+  "utility": {
+    "ping": "Pong! Latency: {latency}ms",
+    "uptime": "Uptime: {uptime}",
+    "userinfo_title": "User Information",
+    "serverinfo_title": "Server Information"
+  }
+}
