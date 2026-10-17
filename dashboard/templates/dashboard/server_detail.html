@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Server {{ guild.guild_id }}{% endblock %}
+{% block page_title %}Server Detail{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 class="card-title">Guild <code>{{ guild.guild_id }}</code></h2>
+    <table class="info-table">
+        <tr>
+            <td>Prefix</td>
+            <td><code>{{ guild.prefix }}</code></td>
+        </tr>
+        <tr>
+            <td>Language</td>
+            <td>{{ guild.language }}</td>
+        </tr>
+        <tr>
+            <td>Welcome Channel</td>
+            <td>{{ guild.welcome_channel_id or '—' }}</td>
+        </tr>
+        <tr>
+            <td>Leave Channel</td>
+            <td>{{ guild.leave_channel_id or '—' }}</td>
+        </tr>
+        <tr>
+            <td>Log Channel</td>
+            <td>{{ guild.log_channel_id or '—' }}</td>
+        </tr>
+        <tr>
+            <td>Security Log Channel</td>
+            <td>{{ guild.security_log_channel_id or '—' }}</td>
+        </tr>
+        <tr>
+            <td>Mute Role</td>
+            <td>{{ guild.mute_role_id or '—' }}</td>
+        </tr>
+        <tr>
+            <td>Verified Role</td>
+            <td>{{ guild.verified_role_id or '—' }}</td>
+        </tr>
+        <tr>
+            <td>Quarantine Role</td>
+            <td>{{ guild.quarantine_role_id or '—' }}</td>
+        </tr>
+        <tr>
+            <td>Created</td>
+            <td>{{ guild.created_at }}</td>
+        </tr>
+        <tr>
+            <td>Updated</td>
+            <td>{{ guild.updated_at }}</td>
+        </tr>
+        <tr>
+            <td>Open Tickets</td>
+            <td>{{ open_tickets }}</td>
+        </tr>
+    </table>
+</div>
+
+{% if security %}
+<div class="card" style="margin-top: 1.5rem;">
+    <h2 class="card-title">Security Config</h2>
+    <table class="info-table">
+        <tr>
+            <td>Anti-Nuke</td>
+            <td>
+                {% if security.anti_nuke_enabled %}
+                <span class="badge badge-success">Enabled</span>
+                {% else %}
+                <span class="badge badge-muted">Disabled</span>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Anti-Raid</td>
+            <td>
+                {% if security.anti_raid_enabled %}
+                <span class="badge badge-success">Enabled</span>
+                {% else %}
+                <span class="badge badge-muted">Disabled</span>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Anti-Spam</td>
+            <td>
+                {% if security.anti_spam_enabled %}
+                <span class="badge badge-success">Enabled</span>
+                {% else %}
+                <span class="badge badge-muted">Disabled</span>
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Lockdown</td>
+            <td>
+                {% if security.lockdown %}
+                <span class="badge badge-danger">ACTIVE</span>
+                {% if security.lockdown_reason %} — {{ security.lockdown_reason }}{% endif %}
+                {% else %}
+                <span class="badge badge-success">Off</span>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    <a href="{{ url_for('security.guild_security', guild_id=guild.guild_id) }}" class="btn btn-secondary" style="margin-top: 1rem;">Full Security View</a>
+</div>
+{% endif %}
+
+<div class="card" style="margin-top: 1.5rem;">
+    <h2 class="card-title">Recent Mod Cases</h2>
+    {% if recent_cases %}
+    <div class="table-wrapper">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Case ID</th>
+                    <th>User ID</th>
+                    <th>Action</th>
+                    <th>Reason</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in recent_cases %}
+                <tr>
+                    <td><a href="{{ url_for('moderation.case_detail', case_id=c.case_id) }}"><code>{{ c.case_id }}</code></a></td>
+                    <td><code>{{ c.user_id }}</code></td>
+                    <td>{{ c.action }}</td>
+                    <td>{{ c.reason or '—' }}</td>
+                    <td>{{ c.created_at[:16] if c.created_at else '—' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="empty-state"><p>No moderation cases yet.</p></div>
+    {% endif %}
+</div>
+
+<div style="margin-top: 1.5rem;">
+    <a href="{{ url_for('servers.list_servers') }}" class="btn btn-secondary">← Back to Servers</a>
+</div>
+{% endblock %}
