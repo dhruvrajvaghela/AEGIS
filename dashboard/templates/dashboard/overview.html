@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Overview{% endblock %}
+{% block page_title %}Overview{% endblock %}
+
+{% block content %}
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-value">{{ stats.guilds }}</div>
+        <div class="stat-label">Servers</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">{{ stats.mod_cases }}</div>
+        <div class="stat-label">Mod Cases</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">{{ stats.open_tickets }}</div>
+        <div class="stat-label">Open Tickets</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">{{ stats.tournaments }}</div>
+        <div class="stat-label">Tournaments</div>
+    </div>
+    <div class="stat-card {% if stats.open_security_events > 0 %}stat-alert{% endif %}">
+        <div class="stat-value">{{ stats.open_security_events }}</div>
+        <div class="stat-label">Open Security Events</div>
+    </div>
+</div>
+
+<div class="grid-2">
+    <div class="card">
+        <h2 class="card-title">System Status</h2>
+        <table class="info-table">
+            <tr>
+                <td>Maintenance Mode</td>
+                <td>
+                    {% if system.maintenance_mode %}
+                    <span class="badge badge-danger">ON</span>
+                    {% else %}
+                    <span class="badge badge-success">OFF</span>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>Default Prefix</td>
+                <td><code>{{ system.default_prefix }}</code></td>
+            </tr>
+            <tr>
+                <td>Default Language</td>
+                <td>{{ system.default_language }}</td>
+            </tr>
+            <tr>
+                <td>Database Path</td>
+                <td><code class="path">{{ system.database_path }}</code></td>
+            </tr>
+            <tr>
+                <td>Current Time (UTC)</td>
+                <td>{{ current_time }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">Feature Flags</h2>
+        <table class="info-table">
+            {% for name, enabled in system.features.items() %}
+            <tr>
+                <td>{{ name | capitalize }}</td>
+                <td>
+                    {% if enabled %}
+                    <span class="badge badge-success">Enabled</span>
+                    {% else %}
+                    <span class="badge badge-muted">Disabled</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<div class="card" style="margin-top: 1.5rem;">
+    <h2 class="card-title">Quick Links</h2>
+    <div class="quick-links">
+        <a href="{{ url_for('security.security_overview') }}" class="btn btn-secondary">Security</a>
+        <a href="{{ url_for('moderation.moderation_overview') }}" class="btn btn-secondary">Moderation</a>
+        <a href="{{ url_for('esports.esports_overview') }}" class="btn btn-secondary">Esports</a>
+        <a href="{{ url_for('tickets.tickets_overview') }}" class="btn btn-secondary">Tickets</a>
+        <a href="{{ url_for('backups.backups_page') }}" class="btn btn-secondary">Backups</a>
+        <a href="{{ url_for('health.health_page') }}" class="btn btn-secondary">Health</a>
+    </div>
+</div>
+{% endblock %}
