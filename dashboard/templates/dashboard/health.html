@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Health{% endblock %}
+{% block page_title %}System Health{% endblock %}
+
+{% block content %}
+<div class="stats-grid">
+    <div class="stat-card {% if info.database.connected %}stat-ok{% else %}stat-alert{% endif %}">
+        <div class="stat-value">{% if info.database.connected %}OK{% else %}FAIL{% endif %}</div>
+        <div class="stat-label">Database Connection</div>
+    </div>
+    <div class="stat-card {% if info.database.integrity_ok %}stat-ok{% else %}stat-alert{% endif %}">
+        <div class="stat-value">{% if info.database.integrity_ok %}OK{% else %}FAIL{% endif %}</div>
+        <div class="stat-label">Integrity Check</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">{{ info.database.tables }}</div>
+        <div class="stat-label">Tables</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">
+            {% if info.database.size_bytes %}
+                {{ (info.database.size_bytes / 1024) | round(1) }} KB
+            {% else %}
+                N/A
+            {% endif %}
+        </div>
+        <div class="stat-label">DB Size</div>
+    </div>
+</div>
+
+<div class="grid-2">
+    <div class="card">
+        <h2 class="card-title">Runtime</h2>
+        <table class="info-table">
+            <tr>
+                <td>Python</td>
+                <td>{{ info.python_version }}</td>
+            </tr>
+            <tr>
+                <td>Platform</td>
+                <td>{{ info.platform }}</td>
+            </tr>
+            <tr>
+                <td>Timestamp</td>
+                <td>{{ info.timestamp }}</td>
+            </tr>
+            <tr>
+                <td>Flask Env</td>
+                <td>{{ info.config.flask_env }}</td>
+            </tr>
+            <tr>
+                <td>Log Level</td>
+                <td>{{ info.config.log_level }}</td>
+            </tr>
+            <tr>
+                <td>Maintenance</td>
+                <td>
+                    {% if info.config.maintenance_mode %}
+                    <span class="badge badge-danger">ON</span>
+                    {% else %}
+                    <span class="badge badge-success">OFF</span>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>Prefix</td>
+                <td><code>{{ info.config.default_prefix }}</code></td>
+            </tr>
+            <tr>
+                <td>Database Path</td>
+                <td><code class="path">{{ info.database.path }}</code></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">Feature Flags</h2>
+        <table class="info-table">
+            {% for name, enabled in info.features.items() %}
+            <tr>
+                <td>{{ name | capitalize }}</td>
+                <td>
+                    {% if enabled %}
+                    <span class="badge badge-success">Enabled</span>
+                    {% else %}
+                    <span class="badge badge-muted">Disabled</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}
