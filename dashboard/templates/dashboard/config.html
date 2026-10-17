@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Config{% endblock %}
+{% block page_title %}Bot Configuration{% endblock %}
+
+{% block content %}
+<div class="grid-2">
+    <div class="card">
+        <h2 class="card-title">General Settings</h2>
+        <table class="info-table">
+            <tr>
+                <td>Owner ID</td>
+                <td><code>{{ owner_id }}</code></td>
+            </tr>
+            <tr>
+                <td>Default Prefix</td>
+                <td><code>{{ prefix }}</code></td>
+            </tr>
+            <tr>
+                <td>Default Language</td>
+                <td>{{ language }}</td>
+            </tr>
+            <tr>
+                <td>Activity Type</td>
+                <td>{{ activity_type }}</td>
+            </tr>
+            <tr>
+                <td>Activity Text</td>
+                <td>{{ activity_text }}</td>
+            </tr>
+            <tr>
+                <td>Log Level</td>
+                <td>{{ log_level }}</td>
+            </tr>
+            <tr>
+                <td>Database Path</td>
+                <td><code class="path">{{ database_path }}</code></td>
+            </tr>
+            <tr>
+                <td>Maintenance Mode</td>
+                <td>
+                    {% if maintenance_mode %}
+                    <span class="badge badge-danger">ON</span>
+                    {% else %}
+                    <span class="badge badge-success">OFF</span>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+
+        <form method="post" action="{{ url_for('config.toggle_maintenance') }}" style="margin-top: 1.25rem;">
+            {% if maintenance_mode %}
+            <button type="submit" name="action" value="disable" class="btn btn-primary">Request Disable Maintenance</button>
+            {% else %}
+            <button type="submit" name="action" value="enable" class="btn btn-danger">Request Enable Maintenance</button>
+            {% endif %}
+        </form>
+        <p class="text-muted" style="margin-top: 0.75rem; font-size: 0.85rem;">
+            Maintenance mode is controlled by the <code>MAINTENANCE_MODE</code> environment variable.
+            Changing it here records the request; update the env var and restart for full effect.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">Feature Flags</h2>
+        <table class="info-table">
+            {% for name, enabled in features.items() %}
+            <tr>
+                <td>{{ name | capitalize }}</td>
+                <td>
+                    {% if enabled %}
+                    <span class="badge badge-success">Enabled</span>
+                    {% else %}
+                    <span class="badge badge-muted">Disabled</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <p class="text-muted" style="margin-top: 1rem; font-size: 0.85rem;">
+            Feature flags are set via environment variables (<code>FEATURE_*</code>).
+            Disabled features (Music, AI, Leveling, Economy) remain off by design.
+        </p>
+    </div>
+</div>
+{% endblock %}
