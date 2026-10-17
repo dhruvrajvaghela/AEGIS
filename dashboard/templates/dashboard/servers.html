@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Servers{% endblock %}
+{% block page_title %}Servers{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 class="card-title">Known Servers ({{ guilds | length }})</h2>
+
+    {% if guilds %}
+    <div class="table-wrapper">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Guild ID</th>
+                    <th>Prefix</th>
+                    <th>Language</th>
+                    <th>Welcome Channel</th>
+                    <th>Log Channel</th>
+                    <th>Created</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for g in guilds %}
+                <tr>
+                    <td><code>{{ g.guild_id }}</code></td>
+                    <td><code>{{ g.prefix }}</code></td>
+                    <td>{{ g.language }}</td>
+                    <td>{{ g.welcome_channel_id or '—' }}</td>
+                    <td>{{ g.log_channel_id or '—' }}</td>
+                    <td>{{ g.created_at[:10] if g.created_at else '—' }}</td>
+                    <td>
+                        <a href="{{ url_for('servers.server_detail', guild_id=g.guild_id) }}" class="btn btn-sm btn-secondary">View</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <p>No servers found in the database yet.</p>
+        <p class="text-muted">Servers are registered automatically when the bot joins them.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
