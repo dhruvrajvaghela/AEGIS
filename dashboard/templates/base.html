@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard{% endblock %} · AEGIS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <span class="logo">AEGIS</span>
+                <span class="logo-sub">ESPORTS BOT</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="{{ url_for('overview.dashboard') }}" class="nav-item {% if request.endpoint == 'overview.dashboard' %}active{% endif %}">
+                    <span class="nav-icon">◈</span> Overview
+                </a>
+                <a href="{{ url_for('servers.list_servers') }}" class="nav-item {% if request.endpoint and request.endpoint.startswith('servers') %}active{% endif %}">
+                    <span class="nav-icon">▣</span> Servers
+                </a>
+                <a href="{{ url_for('config.config_page') }}" class="nav-item {% if request.endpoint and request.endpoint.startswith('config') %}active{% endif %}">
+                    <span class="nav-icon">⚙</span> Config
+                </a>
+                <a href="{{ url_for('security.security_overview') }}" class="nav-item {% if request.endpoint and request.endpoint.startswith('security') %}active{% endif %}">
+                    <span class="nav-icon">🛡</span> Security
+                </a>
+                <a href="{{ url_for('moderation.moderation_overview') }}" class="nav-item {% if request.endpoint and request.endpoint.startswith('moderation') %}active{% endif %}">
+                    <span class="nav-icon">⚖</span> Moderation
+                </a>
+                <a href="{{ url_for('staff.staff_overview') }}" class="nav-item {% if request.endpoint and request.endpoint.startswith('staff') %}active{% endif %}">
+                    <span class="nav-icon">👤</span> Staff
+                </a>
+                <a href="{{ url_for('tickets.tickets_overview') }}" class="nav-item {% if request.endpoint and request.endpoint.startswith('tickets') %}active{% endif %}">
+                    <span class="nav-icon">🎫</span> Tickets
+                </a>
+                <a href="{{ url_for('community.community_overview') }}" class="nav-item {% if request.endpoint and request.endpoint.startswith('community') %}active{% endif %}">
+                    <span class="nav-icon">💬</span> Community
+                </a>
+                <a href="{{ url_for('esports.esports_overview') }}" class="nav-item {% if request.endpoint and request.endpoint.startswith('esports') %}active{% endif %}">
+                    <span class="nav-icon">🏆</span> Esports
+                </a>
+                <a href="{{ url_for('logs.logs_overview') }}" class="nav-item {% if request.endpoint and request.endpoint.startswith('logs') %}active{% endif %}">
+                    <span class="nav-icon">📋</span> Logs
+                </a>
+                <a href="{{ url_for('backups.backups_page') }}" class="nav-item {% if request.endpoint and request.endpoint.startswith('backups') %}active{% endif %}">
+                    <span class="nav-icon">💾</span> Backups
+                </a>
+                <a href="{{ url_for('health.health_page') }}" class="nav-item {% if request.endpoint and request.endpoint.startswith('health') %}active{% endif %}">
+                    <span class="nav-icon">♥</span> Health
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="{{ url_for('auth.logout') }}" class="nav-item logout">Logout</a>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="main">
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+                <h1 class="page-title">{% block page_title %}Dashboard{% endblock %}</h1>
+                <div class="topbar-right">
+                    <span class="user-badge">{{ session.get('username', 'Owner') }}</span>
+                </div>
+            </header>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
